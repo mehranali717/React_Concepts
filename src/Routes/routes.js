@@ -1,16 +1,16 @@
-import { useRoutes } from "react-router-dom"
+import { Navigate, useRoutes } from "react-router-dom"
 import { Mainlayout } from "../layoutes"
 import { Home } from "../pages"
 
 const Routes =()=> {
-     const routes = useRoutes([
+    return useRoutes([
         {
             element:<Mainlayout />,
             children:[
-                {path:"home", element:<Home />}
+                {path:"home", element:<Home />},
+                {path:"*", element:<Navigate to="home" />}
             ]
         }
     ])
-    return routes;
 }
 export default Routes;
