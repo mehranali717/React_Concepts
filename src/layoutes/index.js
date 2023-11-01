@@ -1,0 +1,1 @@
+export {default as Mainlayout} from "./mainlayout/mainlayout";
