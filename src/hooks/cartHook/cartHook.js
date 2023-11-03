@@ -14,7 +14,6 @@ const useCart = (key) => {
           let filteredData = cartStoredData.filter((dataitem) => dataitem.id !== item.id);
           localStorage.setItem(key, JSON.stringify(filteredData));
           setCartData(filteredData);
-          alert("item is already added in List");
         } else {
           localStorage.setItem(key, JSON.stringify([...cartStoredData, item]));
           setCartData([...cartStoredData, item]);

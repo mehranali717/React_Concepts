@@ -5,7 +5,6 @@ import ProductCard from "../productcard/productcard.js"
 const Cart = () => {
   const [display, setDisplay] = useState(false);
   const [cartData, cartHandler] = useCart("cart");
-  console.log({cartData});
   return (
     <>
       <FontAwesomeIcon

@@ -1,14 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "../image/image";
 import Custombtn from "../custombtn/customebtn";
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks.ts";
-import { addToCart } from "../../redux/cartSlice";
 import useFavorites from "../../hooks/favoriteHook/useFavorite.js";
 import useCart from "../../hooks/cartHook/cartHook.js";
 const ProductCard = (props) => {
   const [favorites, setAddRemoveFavorites] = useFavorites("favorites");
-  const [cartData, cartHandler] = useCart("cart")
-  const cartItems = useAppSelector((state) => state.cart.cart);
+  const [cartData, cartHandler] = useCart("cart");
   return (
     <div className="w-[360px] shadow-lg rounded-[10px] flex justify-between  p-[20px]">
       <div className="p-[10px] flex gap-x-[20px]">
@@ -23,17 +20,20 @@ const ProductCard = (props) => {
             {props.item.category}
           </span>
           <span className="text-[16px] text-[#003366] capitalize italic">
-            RS{props.item.price}
+            RS{props.item.price}/-
           </span>
           <Custombtn
-            label="Add To Cart"
-            className="bg-[#33cc00]"
-            // onClick={() => cartHandler(props.item)}
-            onClick={()=>cartHandler(props.item)}
+            label={`${cartData.some((item)=>item.id === props.item.id)?"Remove Item":"Add To Cart"} `}
+            className="cursor-pointer bg-[#33cc00]"
+            onClick={() => cartHandler(props.item)}
           />
         </div>
       </div>
-      <FontAwesomeIcon icon="heart" className="text-[#e0d3f5] cursor-pointer" onClick={()=> setAddRemoveFavorites(props.item)} />
+      <FontAwesomeIcon
+        icon="heart"
+        className={`cursor-pointer ${favorites.some((item)=>item.id === props.item.id)?"text-[red]":"text-[#e0d3f5]"} `}
+        onClick={() => setAddRemoveFavorites(props.item)}
+      />
     </div>
   );
 };

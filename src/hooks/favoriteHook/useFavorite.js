@@ -14,7 +14,6 @@ const useFavorites = (key) => {
         let filteredData = data.filter((dataitem) => dataitem.id !== item.id);
         localStorage.setItem(key, JSON.stringify(filteredData));
         setFavorites(filteredData);
-        alert("item is already added in List");
       } else {
         localStorage.setItem(key, JSON.stringify([...data, item]));
         setFavorites([...data, item]);
