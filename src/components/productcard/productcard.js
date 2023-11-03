@@ -3,7 +3,9 @@ import Image from "../image/image";
 import Custombtn from "../custombtn/customebtn";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks.ts";
 import { addToCart } from "../../redux/cartSlice";
+import useFavorites from "../../hooks/favoriteHook/useFavorite.js";
 const ProductCard = (props) => {
+  const [favorites, setAddRemoveFavorites] = useFavorites("favorites");
   const cartItems = useAppSelector((state) => state.cart.cart);
   const dispatch = useAppDispatch();
   let filteredItem;
@@ -37,7 +39,7 @@ const ProductCard = (props) => {
           />
         </div>
       </div>
-      <FontAwesomeIcon icon="heart" className="text-[#e0d3f5] cursor-pointer" />
+      <FontAwesomeIcon icon="heart" className="text-[#e0d3f5] cursor-pointer" onClick={()=> setAddRemoveFavorites(props.item)} />
     </div>
   );
 };
