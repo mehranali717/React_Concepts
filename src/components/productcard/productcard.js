@@ -4,18 +4,11 @@ import Custombtn from "../custombtn/customebtn";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks.ts";
 import { addToCart } from "../../redux/cartSlice";
 import useFavorites from "../../hooks/favoriteHook/useFavorite.js";
+import useCart from "../../hooks/cartHook/cartHook.js";
 const ProductCard = (props) => {
   const [favorites, setAddRemoveFavorites] = useFavorites("favorites");
+  const [cartData, cartHandler] = useCart("cart")
   const cartItems = useAppSelector((state) => state.cart.cart);
-  const dispatch = useAppDispatch();
-  let filteredItem;
-  const cartHandler = (item) => {
-     filteredItem = cartItems.filter(
-      (cartItem) => cartItem.id === item.id
-    );
-    if (filteredItem.length === 0) dispatch(addToCart(item));
-    else alert("item already in cart");
-  };
   return (
     <div className="w-[360px] shadow-lg rounded-[10px] flex justify-between  p-[20px]">
       <div className="p-[10px] flex gap-x-[20px]">
@@ -35,7 +28,8 @@ const ProductCard = (props) => {
           <Custombtn
             label="Add To Cart"
             className="bg-[#33cc00]"
-            onClick={() => cartHandler(props.item)}
+            // onClick={() => cartHandler(props.item)}
+            onClick={()=>cartHandler(props.item)}
           />
         </div>
       </div>

@@ -1,10 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { useAppSelector } from "../../hooks/hooks.ts";
-import ProductCard from "../productcard/productcard";
+import useCart from "../../hooks/cartHook/cartHook.js";
+import ProductCard from "../productcard/productcard.js"
 const Cart = () => {
   const [display, setDisplay] = useState(false);
-  const cartData = useAppSelector((state)=>state.cart.cart)
+  const [cartData, cartHandler] = useCart("cart");
+  console.log({cartData});
   return (
     <>
       <FontAwesomeIcon
@@ -24,7 +25,7 @@ const Cart = () => {
               onClick={() => setDisplay((prev) => !prev)}
             />
           </div>
-          {cartData.map((item, index)=><ProductCard item={item} key={index}/>)}
+          {cartData.length>0?cartData.map((item) => <ProductCard item={item} />):<h1 className="text-[red] text-center text-[20px] w-[100%]">Add Items To Cart</h1>}
         </div>
       )}
     </>
