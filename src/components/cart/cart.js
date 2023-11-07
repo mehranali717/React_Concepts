@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import useCart from "../../hooks/cartHook/cartHook.js";
+import useCart from "../../hooks/cartHook/useCart.js";
 import ProductCard from "../productcard/productcard.js"
 const Cart = () => {
   const [display, setDisplay] = useState(false);
@@ -24,7 +24,7 @@ const Cart = () => {
               onClick={() => setDisplay((prev) => !prev)}
             />
           </div>
-          {cartData.length>0?cartData.map((item) => <ProductCard item={item} />):<h1 className="text-[red] text-center text-[20px] w-[100%]">Add Items To Cart</h1>}
+          {cartData.length>0?cartData.map((item, index) => <ProductCard item={item} key={index}/>):<h1 className="text-[red] text-center text-[20px] w-[100%]">Add Items To Cart</h1>}
         </div>
       )}
     </>

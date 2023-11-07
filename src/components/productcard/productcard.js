@@ -2,10 +2,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "../image/image";
 import Custombtn from "../custombtn/customebtn";
 import useFavorites from "../../hooks/favoriteHook/useFavorite.js";
-import useCart from "../../hooks/cartHook/cartHook.js";
+import useCart from "../../hooks/cartHook/useCart.js";
 const ProductCard = (props) => {
   const [favorites, setAddRemoveFavorites] = useFavorites("favorites");
-  const [cartData, cartHandler] = useCart("cart");
+  const [cartData, cartHandler] = useCart();
   return (
     <div className="w-[360px] shadow-lg rounded-[10px] flex justify-between  p-[20px]">
       <div className="p-[10px] flex gap-x-[20px]">
